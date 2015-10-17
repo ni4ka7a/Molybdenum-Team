@@ -7,8 +7,8 @@
     <ProjectGuid>{AA50B7B3-3127-4E78-8F79-C3B7F6725F14}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Chemicals.Data</RootNamespace>
-    <AssemblyName>Chemicals.Data</AssemblyName>
+    <RootNamespace>Chemicals.Data.SQLServer</RootNamespace>
+    <AssemblyName>Chemicals.Data.SQLServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

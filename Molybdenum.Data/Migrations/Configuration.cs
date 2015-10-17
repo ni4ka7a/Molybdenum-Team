@@ -1,4 +1,4 @@
-namespace Chemicals.Data.Migrations
+namespace Chemicals.Data.SQLServer.Migrations
 {
     using System.Data.Entity.Migrations;
 

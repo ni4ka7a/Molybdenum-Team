@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Product
     {
@@ -19,15 +20,20 @@
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
+        [Index(IsUnique = true)] 
         public string Name { get; set; }
 
         public int TypeId { get; set; }
 
+        public int MeasureId { get; set; }
+
         [MaxLength(50)]
+        [Index(IsUnique = true)] 
         public string Formula { get; set; }
 
-        [Range(0, Double.MaxValue, ErrorMessage = "Price must be greater than 0!")]
-        public double PricePerUnit { get; set; }
+        [Required]
+        [Column(TypeName = "Money")]
+        public decimal PricePerUnit { get; set; }
 
         [StringLength(200, MinimumLength = 5)]
         public string DescriptionOfProduction { get; set; }

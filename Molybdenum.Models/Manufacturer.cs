@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Manufacturer
     {
@@ -16,6 +17,7 @@
 
         [Required]
         [StringLength(80, MinimumLength = 2)]
+        [Index(IsUnique = true)] 
         public string Name { get; set; }
 
         [Required]

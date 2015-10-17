@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Trader
     {
@@ -16,6 +17,7 @@
 
         [Required]
         [StringLength(50, MinimumLength = 2)]
+        [Index(IsUnique = true)] 
         public string Name { get; set; }
 
         [MaxLength(70, ErrorMessage = "Maximum length of trader address is 70 chars!")]

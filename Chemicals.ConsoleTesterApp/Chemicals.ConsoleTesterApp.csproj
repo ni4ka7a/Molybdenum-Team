@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.csproj">
+    <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.SQL.csproj">
       <Project>{aa50b7b3-3127-4e78-8f79-c3b7f6725f14}</Project>
-      <Name>Chemicals.Data</Name>
+      <Name>Chemicals.Data.SQL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Models\Chemicals.Models.csproj">
       <Project>{c65ff474-d22d-4dbb-81bc-3ed43a255953}</Project>

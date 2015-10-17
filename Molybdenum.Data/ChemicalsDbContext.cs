@@ -1,4 +1,4 @@
-﻿namespace Chemicals.Data
+﻿namespace Chemicals.Data.SQLServer
 {
     using System.Data.Entity;
 

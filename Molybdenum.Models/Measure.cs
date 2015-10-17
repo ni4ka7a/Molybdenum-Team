@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Measure
     {
@@ -16,6 +17,7 @@
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
+        [Index(IsUnique = true)] 
         public string MeasureName { get; set; }
 
         public virtual ICollection<Product> Products

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Type
     {
@@ -16,6 +17,7 @@
 
         [Required]
         [StringLength(50, MinimumLength = 2)]
+        [Index(IsUnique = true)] 
         public string TypeName { get; set; }
 
         public virtual ICollection<Product> Products
