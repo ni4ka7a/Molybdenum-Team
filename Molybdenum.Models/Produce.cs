@@ -8,7 +8,7 @@
 
         public int ManufacturerId { get; set; }
 
-        public uint Amount { get; set; }
+        public int Amount { get; set; }
 
         public virtual Product Product { get; set; }
 

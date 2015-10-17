@@ -24,7 +24,7 @@
         [StringLength(80, MinimumLength = 5)]
         public string Address { get; set; }
 
-        public uint NumberOfFactories { get; set; }
+        public int NumberOfFactories { get; set; }
 
         public virtual ICollection<Produce> Produces
         {

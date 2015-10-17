@@ -23,7 +23,7 @@
         [MaxLength(70, ErrorMessage = "Maximum length of trader address is 70 chars!")]
         public string Address { get; set; }
 
-        public uint NumberOfShops { get; set; }
+        public int NumberOfShops { get; set; }
 
         public virtual ICollection<Sale> Sales
         {
