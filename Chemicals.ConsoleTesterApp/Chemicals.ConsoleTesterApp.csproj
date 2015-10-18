@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Chemicals.ExcelImporter\Chemicals.ExcelImporter.csproj">
+    <ProjectReference Include="..\Chemicals.ExcelImporter\Chemicals.ExcelDataIE.csproj">
       <Project>{099b7988-86bd-4c81-b147-033f0d1f5b9e}</Project>
-      <Name>Chemicals.ExcelImporter</Name>
+      <Name>Chemicals.ExcelDataIE</Name>
     </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.SQLServer.csproj">
       <Project>{aa50b7b3-3127-4e78-8f79-c3b7f6725f14}</Project>
