@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ImportData", "Che
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ExcelImporter", "Chemicals.ExcelImporter\Chemicals.ExcelImporter.csproj", "{099B7988-86BD-4C81-B147-033F0D1F5B9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ReportingServices", "Chemicals.ReportingServices\Chemicals.ReportingServices.csproj", "{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{099B7988-86BD-4C81-B147-033F0D1F5B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099B7988-86BD-4C81-B147-033F0D1F5B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099B7988-86BD-4C81-B147-033F0D1F5B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
