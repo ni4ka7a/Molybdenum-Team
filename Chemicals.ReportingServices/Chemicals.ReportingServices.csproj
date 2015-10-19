@@ -54,6 +54,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Chemicals.MySqlData\Chemicals.MySqlData.csproj">
+      <Project>{1fefa3ea-c314-4444-bc00-5550b196a1dc}</Project>
+      <Name>Chemicals.MySqlData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Models\Chemicals.Models.csproj">
       <Project>{c65ff474-d22d-4dbb-81bc-3ed43a255953}</Project>
       <Name>Chemicals.Models</Name>

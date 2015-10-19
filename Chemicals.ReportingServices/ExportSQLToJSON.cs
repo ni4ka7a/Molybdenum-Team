@@ -4,13 +4,25 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.IO;
+    
+    using MySqlData.Models;
 
     public class ExportSQLToJSON
     {
-
-        public static void ImportProductsFromJson()
+        public static List<Report> ImportProductsInfo(string directoryPath)
         {
+            var files = Directory.GetFiles(directoryPath);
 
+            string jsonReport;
+            var copy = new List<Report>();
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                jsonReport = File.ReadAllText(files[i]);
+                copy.Add(JsonConvert.DeserializeObject<Report>(jsonReport));
+            }
+
+            return copy;
         }
 
         public static void ExportProducts(List<Product> dbSet, string filePath)
