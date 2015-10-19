@@ -16,6 +16,8 @@
     using Chemicals.MongoData.MongoDb;
     using XmlReport;
     using XmlData;
+    using Export.JSON;
+    using DataImport;
 
     public class Startup
     {
@@ -29,7 +31,12 @@
             //ImportTradersFromXml("../../../Files/traders.xml");
             //ImportManufacturersFromXml("../../../Files/manufacturers.xml");
 
-            GenerateXmlReports();
+            //GenerateXmlReports();
+
+            // TODO: test when sels are added
+            //GenerateJsonReports();
+
+            GeneratePdfReports();
 
 
          
@@ -60,6 +67,35 @@
 
             //db.SaveChanges();
 
+        }
+
+        private static void GeneratePdfReports()
+        {
+            var pdfReportsGenerator = new PdfReportGenerator();
+
+            var dbContext = new ChemicalsDbContext();
+
+            var deals = dbContext.Produces
+                    .Select(d => new
+                    {
+                        d.Id,
+                        d.Manufacturer.Name,
+                        ProductName = d.Product.Name,
+                        d.Manufacturer.Address,
+                        d.Product.Formula
+                    }).ToList();
+
+            pdfReportsGenerator.GenerateReport(deals);
+        }
+
+        // TODO: add path to the method
+        private static void GenerateJsonReports()
+        {
+            var dbContext = new ChemicalsDbContext();
+
+            var listOfProducts = dbContext.Products.ToList();
+
+            ExportSQLToJSON.ExportProducts(listOfProducts, "../../Reports/");
         }
 
         // TODO: add path to the method

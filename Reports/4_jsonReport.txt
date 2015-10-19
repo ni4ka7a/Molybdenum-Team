@@ -1,9 +1,0 @@
-{
-  "Id": 4,
-  "Name": "Chloric",
-  "Type": "Acid",
-  "Vendor": "Gosho",
-  "PricePerUnit": 12.0500,
-  "Sold": 200,
-  "TotalIncome": 2410.0000
-}
