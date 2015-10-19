@@ -96,6 +96,10 @@
       <Project>{efb2fa56-b27f-4b77-93de-fda484e3bc5b}</Project>
       <Name>Chemicals.ReportingServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chemicals.SQLightData\Chemicals.SQLightData.csproj">
+      <Project>{83445917-f2cb-47ec-ad25-ab628ac05487}</Project>
+      <Name>Chemicals.SQLightData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chemicals.XmlData\Chemicals.XmlData.csproj">
       <Project>{f3feb095-cbf8-4287-8411-79a329109bb8}</Project>
       <Name>Chemicals.XmlData</Name>

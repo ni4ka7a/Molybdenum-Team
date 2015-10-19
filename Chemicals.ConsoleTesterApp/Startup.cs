@@ -1,5 +1,6 @@
 ﻿namespace Chemicals.ConsoleTesterApp
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
@@ -16,6 +17,7 @@
     using XmlData;
     using XmlReport;
     using ReportingServices;
+    using SQLightData;
 
     public class Startup
     {
@@ -40,6 +42,24 @@
             //ImportProducesFromExcel();
 
             //ExportDataFromJsonReportsToMySql();
+
+           // SQLightData.Program.Main();
+
+            using (var db = new RadioactivityDbContext())
+            {
+                RadioactiveProduct product = new RadioactiveProduct();
+                product.Radioactivity = 5;
+                product.ProductName = "jfksdjgdlk";
+                db.RadioactiveProducts.Add(product);
+
+                db.SaveChanges();
+
+                foreach (var radioactiveProduct in db.RadioactiveProducts)
+                {
+                    Console.WriteLine(radioactiveProduct.ProductName);
+                }
+                // Console.WriteLine(db.RadioactiveProducts.Count());
+            }
         }
 
         // TODO: working! (for now)
@@ -254,6 +274,7 @@
 
             dbContext.SaveChanges();
         }
+
 
 
         // TODO: ImportManufacturers in mongo

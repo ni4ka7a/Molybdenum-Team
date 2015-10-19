@@ -1,10 +1,12 @@
 ﻿namespace Chemicals.SQLightData
 {
     using System;
+    using  System.Collections.Generic;
+    using  Chemicals.Models;
 
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             using (var db = new RadioactivityDbContext())
             {
@@ -19,7 +21,23 @@
                 {
                     Console.WriteLine(radioactiveProduct.ProductName);
                 }
-                // Console.WriteLine(db.RadioactiveProducts.Count());
+            }
+        }
+
+        public static void GetProducts(ICollection<Product> products)
+        {
+            using (var db = new RadioactivityDbContext())
+            {
+
+
+                foreach (var prod in products)
+                {
+                    var radProduct = new RadioactiveProduct();
+                    radProduct.Id = prod.Id;
+                    radProduct.ProductName = prod.Name;
+                    var random = new Random();
+                    radProduct.Radioactivity = random.Next(1, 10);
+                }
             }
         }
     }
