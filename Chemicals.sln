@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.Models", "Molybdenum.Models\Chemicals.Models.csproj", "{C65FF474-D22D-4DBB-81BC-3ED43A255953}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ExcelImporter", "Chemicals.ExcelImporter\Chemicals.ExcelImporter.csproj", "{099B7988-86BD-4C81-B147-033F0D1F5B9E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ReportingServices", "Chemicals.ReportingServices\Chemicals.ReportingServices.csproj", "{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.Export.JSON", "Chemicals.Export.JSON\Chemicals.Export.JSON.csproj", "{6E0C1688-37FC-494D-B624-157EC2923560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFB2FA56-B27F-4B77-93DE-FDA484E3BC5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0C1688-37FC-494D-B624-157EC2923560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0C1688-37FC-494D-B624-157EC2923560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0C1688-37FC-494D-B624-157EC2923560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0C1688-37FC-494D-B624-157EC2923560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

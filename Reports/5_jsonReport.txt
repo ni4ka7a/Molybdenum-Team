@@ -1,0 +1,9 @@
+{
+  "Id": 5,
+  "Name": "Acetic",
+  "Type": "Acid",
+  "Vendor": "Pesho",
+  "PricePerUnit": 1.5900,
+  "Sold": 150,
+  "TotalIncome": 238.5000
+}
