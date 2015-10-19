@@ -1,17 +1,18 @@
 ﻿namespace Chemicals.Export.JSON
 {
-    using Models;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.IO;
 
+    using Models;
+    using Newtonsoft.Json;
+
     public class ExportSQLToJSON
     {
-
         public static void ExportProducts(List<Product> dbSet, string filePath)
         {
             var firstProduct = dbSet;
-            //var jsonStrBuilder = new StringBuilder();
+
+           ////var jsonStrBuilder = new StringBuilder();
 
             string jsonReport;
 

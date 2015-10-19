@@ -13,6 +13,7 @@
     public class PdfReportGenerator
     {
         private const string ReportsPath = "../../test.pdf";
+
         public PdfReportGenerator()
         {
         }

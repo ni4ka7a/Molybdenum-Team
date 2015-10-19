@@ -1,14 +1,10 @@
 ﻿namespace Chemicals.MySqlData
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using Telerik.OpenAccess;
     using Telerik.OpenAccess.Metadata;
 
-    using Chemicals.MySqlData.Models;
+    using Models;
 
     public partial class FluentModelContent : OpenAccessContext
     {
