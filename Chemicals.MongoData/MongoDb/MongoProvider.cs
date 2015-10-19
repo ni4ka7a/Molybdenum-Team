@@ -1,4 +1,4 @@
-﻿namespace Chemicals.ImportData.MongoDb
+﻿namespace Chemicals.MongoData.MongoDb
 {
     using System;
     using System.Collections.Generic;

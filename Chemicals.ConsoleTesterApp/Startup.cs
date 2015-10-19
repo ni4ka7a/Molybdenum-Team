@@ -13,7 +13,7 @@
     using Chemicals.ExcelImporter;
     using Chemicals.ExcelImporter.Contracts;
     using Chemicals.Models;
-    using Chemicals.ImportData.MongoDb;
+    using Chemicals.MongoData.MongoDb;
 
     public class Startup
     {
@@ -54,19 +54,19 @@
 
             //db.SaveChanges();
 
-            //var mongoProvider = new MongoProvider(
-            //    System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
-            //    System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
+            var mongoProvider = new MongoProvider(
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
 
-            //var mongoDatabase = mongoProvider.GetDatabase();
+            var mongoDatabase = mongoProvider.GetDatabase();
 
-            //var mongoImporter = new MongoImporter();
-            //var products = mongoImporter.GetAllProducts(mongoDatabase, "Products");
+            var mongoImporter = new MongoImporter();
+            var products = mongoImporter.GetAllProducts(mongoDatabase, "Products");
 
-            //foreach (var item in products)
-            //{
-            //    System.Console.WriteLine(item.Name);
-            //}
+            foreach (var item in products)
+            {
+                System.Console.WriteLine(item.Name);
+            }
         }
     }
 }

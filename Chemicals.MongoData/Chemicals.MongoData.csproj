@@ -7,8 +7,8 @@
     <ProjectGuid>{C3FF09FA-1ED1-4030-B059-86452839E655}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Chemicals.ImportData</RootNamespace>
-    <AssemblyName>Chemicals.ImportData</AssemblyName>
+    <RootNamespace>Chemicals.MongoData</RootNamespace>
+    <AssemblyName>Chemicals.MongoData</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ConsoleTesterApp"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.Data.SQLServer", "Molybdenum.Data\Chemicals.Data.SQLServer.csproj", "{AA50B7B3-3127-4E78-8F79-C3B7F6725F14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ImportData", "Chemicals.ImportData\Chemicals.ImportData.csproj", "{C3FF09FA-1ED1-4030-B059-86452839E655}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.MongoData", "Chemicals.MongoData\Chemicals.MongoData.csproj", "{C3FF09FA-1ED1-4030-B059-86452839E655}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.ExcelDataIE", "Chemicals.ExcelImporter\Chemicals.ExcelDataIE.csproj", "{099B7988-86BD-4C81-B147-033F0D1F5B9E}"
 EndProject
