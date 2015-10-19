@@ -8,7 +8,6 @@
     using DataImport;
     using ExcelDataIE;
     using ExcelImporter.Contracts;
-    using Export.JSON;
     using Models;
     using MongoData.MongoDb;
     using MySqlData;
@@ -16,6 +15,7 @@
     using Telerik.OpenAccess;
     using XmlData;
     using XmlReport;
+    using ReportingServices;
 
     public class Startup
     {
@@ -37,55 +37,35 @@
 
             //ImportSalesFromExcel();
 
-<<<<<<< HEAD
-            ImportProducesFromExcel();
+            //ImportProducesFromExcel();
 
-
-=======
->>>>>>> f21c78b5aeeeb299c2c84b093fbfe5b2fc28e707
-            //IZipExtractor zipExtractor = new ZipExtractor();
-            //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
-            //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
-
-            //ExcelExporter<Sale> l = new ExcelExporter<Sale>();
-            //l.ExportDataModelsCollectionToExcelFile(@".\", "Test2", "Test3", sales);
-
-            //ICollection<Sale> salesZip = k.ImportModelsDataFromZipFile(@".\test.zip");
-
-            //var i = 1;
-            //foreach (Sale sale in sales)
-            //{
-            //    db.Sales.Add(sale);
-
-            //    if (i % 100 == 0)
-            //    {
-            //        db.SaveChanges();
-            //        db.Dispose();
-            //        db = new ChemicalsDbContext();
-            //        i = 0;
-            //    }
-
-            //    i++;
-            //}
-
-            //db.SaveChanges();
+            //ExportDataFromJsonReportsToMySql();
         }
 
-        private static void MySqlDataTest()
+        // TODO: working! (for now)
+        private static void ExportDataFromJsonReportsToMySql()
         {
             using (var dbContext = new FluentModelContent())
             {
-                Report newReport = new Report
-                {
-                    Name = "First Report",
-                    Type = "First type",
-                    Vendor = "Stamat",
-                    PricePerUnit = "13",
-                    Sold = "14",
-                    TotalIncome = "515"
-                };
+                //Report newReport = new Report
+                //{
+                //    Name = "First Report",
+                //    Type = "First type",
+                //    Vendor = "Stamat",
+                //    PricePerUnit = "13",
+                //    Sold = "14",
+                //    TotalIncome = "515"
+                //};
 
-                dbContext.Add(newReport);
+                //dbContext.Add(newReport);
+
+                var reports = ExportSQLToJSON.ImportProductsInfo("../../../Reports/");
+
+                foreach (var item in reports)
+                {
+                    dbContext.Add(item);
+                }
+
                 dbContext.SaveChanges();
             }
         }
@@ -100,8 +80,10 @@
 
             foreach (var item in produces)
             {
-                System.Console.WriteLine(item.ProducedDate);
+                db.Produces.Add(item);
             }
+
+            db.SaveChanges();
         }
 
         private static void ImportSalesFromExcel()
@@ -114,8 +96,10 @@
 
             foreach (var item in sales)
             {
-                System.Console.WriteLine(item.TraderId);
+                db.Sales.Add(item);
             }
+
+            db.SaveChanges();
 
             //ExcelExporter<Sale> l = new ExcelExporter<Sale>();
             //l.ExportDataModelsCollectionToExcelFile(@".\", "Test2", "Test3", sales);
@@ -167,7 +151,7 @@
 
             var listOfProducts = dbContext.Products.ToList();
 
-            ExportSQLToJSON.ExportProducts(listOfProducts, "../../Reports/");
+            ExportSQLToJSON.ExportProducts(listOfProducts, "../../../Reports/");
         }
 
         private static void GenerateXmlReports(string pathToSave)
@@ -269,6 +253,20 @@
             }
 
             dbContext.SaveChanges();
+        }
+
+
+        // TODO: ImportManufacturers in mongo
+        private static void ExportXmlManufacturersToMongo()
+        {
+            var mongoProvider = new MongoProvider(
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
+
+            var mongoDatabase = mongoProvider.GetDatabase();
+
+            var mongoImporter = new MongoImporter();
+            //mongoImporter.ImportManufacturers(mongoDatabase, manufacturers);
         }
     }
 }
