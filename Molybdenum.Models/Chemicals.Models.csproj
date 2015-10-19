@@ -56,6 +56,9 @@
     <Compile Include="Sale.cs" />
     <Compile Include="Trader.cs" />
     <Compile Include="Type.cs" />
+    <Compile Include="XmlManufacturer.cs" />
+    <Compile Include="XmlProduct.cs" />
+    <Compile Include="XmlReportModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

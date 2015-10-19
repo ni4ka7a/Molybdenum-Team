@@ -76,6 +76,10 @@
       <Project>{c3ff09fa-1ed1-4030-b059-86452839e655}</Project>
       <Name>Chemicals.MongoData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chemicals.ReportingServices\Chemicals.ReportingServices.csproj">
+      <Project>{efb2fa56-b27f-4b77-93de-fda484e3bc5b}</Project>
+      <Name>Chemicals.ReportingServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.SQLServer.csproj">
       <Project>{aa50b7b3-3127-4e78-8f79-c3b7f6725f14}</Project>
       <Name>Chemicals.Data.SQLServer</Name>
