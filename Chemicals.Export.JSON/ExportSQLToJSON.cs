@@ -24,7 +24,7 @@
                         Id = item.Id,
                         Name = item.Name,
                         Type = item.Type.TypeName,
-                        Vendor = sale.Tradet.Name,
+                        Vendor = sale.Trader.Name,
                         PricePerUnit = item.PricePerUnit,
                         Sold = sale.Quantity,
                         TotalIncome = sale.Quantity * item.PricePerUnit
