@@ -36,7 +36,9 @@
             // TODO: test when sels are added
             //GenerateJsonReports();
 
-            GeneratePdfReports();
+            //GeneratePdfReports();
+
+            ImportSalesFromExcel();
 
 
          
@@ -67,6 +69,42 @@
 
             //db.SaveChanges();
 
+        }
+
+        private static void ImportSalesFromExcel()
+        {
+            var db = new ChemicalsDbContext();
+
+            IZipExtractor zipExtractor = new ZipExtractor();
+            ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
+            ICollection<Sale> sales = k.ImportModelsDataFromZipFile("../../../Files/Files.zip");
+
+            foreach (var item in sales)
+            {
+                System.Console.WriteLine(item.TraderId);
+            }
+            //ExcelExporter<Sale> l = new ExcelExporter<Sale>();
+            //l.ExportDataModelsCollectionToExcelFile(@".\", "Test2", "Test3", sales);
+
+            //ICollection<Sale> salesZip = k.ImportModelsDataFromZipFile(@".\test.zip");
+
+            //var i = 1;
+            //foreach (Sale sale in sales)
+            //{
+            //    db.Sales.Add(sale);
+
+            //    if (i % 100 == 0)
+            //    {
+            //        db.SaveChanges();
+            //        db.Dispose();
+            //        db = new ChemicalsDbContext();
+            //        i = 0;
+            //    }
+
+            //    i++;
+            //}
+
+            //db.SaveChanges();
         }
 
         private static void GeneratePdfReports()

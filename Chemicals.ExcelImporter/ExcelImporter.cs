@@ -83,7 +83,7 @@
 
             foreach (PropertyInfo info in properties)
             {
-                propertyDictionary[info.Name.ToUpper()] = info;
+                propertyDictionary[info.Name] = info;
             }
 
             while (dataReader.Read())
@@ -91,7 +91,7 @@
                 T newObject = new T();
                 for (int index = 0; index < dataReader.FieldCount; index++)
                 {
-                    PropertyInfo info = propertyDictionary[dataReader.GetName(index).ToUpper()];
+                    PropertyInfo info = propertyDictionary[dataReader.GetName(index)];
                     if ((info != null) && info.CanWrite)
                     {
                         var k = dataReader.GetValue(index);

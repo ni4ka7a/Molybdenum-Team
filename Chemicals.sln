@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.Export.JSON", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.XmlData", "Chemicals.XmlData\Chemicals.XmlData.csproj", "{F3FEB095-CBF8-4287-8411-79A329109BB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemicals.MySqlData", "Chemicals.MySqlData\Chemicals.MySqlData.csproj", "{1FEFA3EA-C314-4444-BC00-5550B196A1DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{F3FEB095-CBF8-4287-8411-79A329109BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3FEB095-CBF8-4287-8411-79A329109BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3FEB095-CBF8-4287-8411-79A329109BB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FEFA3EA-C314-4444-BC00-5550B196A1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEFA3EA-C314-4444-BC00-5550B196A1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEFA3EA-C314-4444-BC00-5550B196A1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEFA3EA-C314-4444-BC00-5550B196A1DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
