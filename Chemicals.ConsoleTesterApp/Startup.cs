@@ -15,6 +15,7 @@
     using Chemicals.Models;
     using Chemicals.MongoData.MongoDb;
     using XmlReport;
+    using XmlData;
 
     public class Startup
     {
@@ -22,12 +23,16 @@
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
 
-            var db = new ChemicalsDbContext();
-            var manufacturer = new Manufacturer() { Name = "PSI", NumberOfFactories = 5, Address = "Aleksandar Malinov 102" };
 
-            //db.Manufacturers.AddOrUpdate(manufacturer);
-            db.SaveChanges();
-            //System.Console.WriteLine(db.Manufacturers.Count());
+            //ImportDataFromMongo();
+
+            //ImportTradersFromXml("../../../Files/traders.xml");
+            //ImportManufacturersFromXml("../../../Files/manufacturers.xml");
+
+            GenerateXmlReports();
+
+
+         
             //IZipExtractor zipExtractor = new ZipExtractor();
             //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
             //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
@@ -55,68 +60,112 @@
 
             //db.SaveChanges();
 
-            //var mongoProvider = new MongoProvider(
-            //    System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
-            //    System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
+        }
 
-            //var mongoDatabase = mongoProvider.GetDatabase();
-
-            //var mongoImporter = new MongoImporter();
-            //var products = mongoImporter.GetAllProducts(mongoDatabase, "Products");
-
-            //foreach (var item in products)
-            //{
-            //    System.Console.WriteLine(item.Name);
-            //}
-
-            //// Generate XML report
-
-            //using (db = new ChemicalsDbContext())
-            //{
-            //    var manufacturers = (from man in db.Manufacturers.Include("Name")
-            //                         join p in db.Produces on man.Id equals p.ManufacturerId
-            //                         join pr in db.Products.Include("Name").Include("Formula") on p.ProductId equals pr.Id
-            //                         select new
-            //                         {
-            //                             ManufacturerName = man.Name,
-            //                             ProductName = pr.Name,
-            //                             Amount = p.Amount,
-            //                             Formula = pr.Formula
-            //                         }).ToList();
+        // TODO: add path to the method
+        private static void GenerateXmlReports()
+        {
+            using (var db = new ChemicalsDbContext())
+            {
+                var manufacturers = (from man in db.Manufacturers.Include("Name")
+                                     join p in db.Produces on man.Id equals p.ManufacturerId
+                                     join pr in db.Products.Include("Name").Include("Formula") on p.ProductId equals pr.Id
+                                     select new
+                                     {
+                                         ManufacturerName = man.Name,
+                                         ProductName = pr.Name,
+                                         Amount = p.Amount,
+                                         Formula = pr.Formula
+                                     }).ToList();
 
 
-            //    var manufacturersList = new List<XmlManufacturer>();
-            //    var productsList = new List<XmlProduct>();
+                var manufacturersList = new List<XmlManufacturer>();
+                var productsList = new List<XmlProduct>();
 
-            //    foreach (var man in manufacturers)
-            //    {
-            //        productsList.Add(new XmlProduct
-            //        {
-            //            Name = man.ProductName,
-            //            Amout = man.Amount,
-            //            Formula = man.Formula
-            //        });
+                foreach (var man in manufacturers)
+                {
+                    productsList.Add(new XmlProduct
+                    {
+                        Name = man.ProductName,
+                        Amout = man.Amount,
+                        Formula = man.Formula
+                    });
 
-            //        var currentManufacturer = new XmlManufacturer
-            //        {
-            //            Name = man.ManufacturerName,
-            //            Products = productsList
-            //        };
+                    var currentManufacturer = new XmlManufacturer
+                    {
+                        Name = man.ManufacturerName,
+                        Products = productsList
+                    };
 
-            //        manufacturersList.Add(currentManufacturer);
-            //    }
+                    manufacturersList.Add(currentManufacturer);
+                }
 
-            //    var currentReport = new XmlReportModel
-            //    {
-            //        Manufacturers = manufacturersList
-            //    };
+                var currentReport = new XmlReportModel
+                {
+                    Manufacturers = manufacturersList
+                };
 
-            //    var reportGenerator = new XmlReportGenerator();
-            //    reportGenerator.ExportXmlReport(currentReport);
+                var reportGenerator = new XmlReportGenerator();
+                reportGenerator.ExportXmlReport(currentReport);
+            }
+        }
 
+        private static void ImportTradersFromXml(string path)
+        {
+            var xmlImporter = new XmlDataImporter();
+
+            var dbContext = new ChemicalsDbContext();
+
+            var traders = xmlImporter.LoadTraders(path);
+
+            foreach (var trader in traders)
+            {
+                dbContext.Traders.Add(trader);
             }
 
+            dbContext.SaveChanges();
+            dbContext.Dispose();
+        }
+
+        private static void ImportManufacturersFromXml(string path)
+        {
+            var xmlImporter = new XmlDataImporter();
+
+            var dbContext = new ChemicalsDbContext();
+
+            var manufacturers = xmlImporter.LoadManufecturers(path);
+
+            foreach (var manufacturer in manufacturers)
+            {
+                dbContext.Manufacturers.Add(manufacturer);
+            }
+
+            dbContext.SaveChanges();
+            dbContext.Dispose();
+        }
+
+        private static void ImportDataFromMongo()
+        {
+            var dbContext = new ChemicalsDbContext();
+
+            var mongoProvider = new MongoProvider(
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
+                System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
+
+            var mongoDatabase = mongoProvider.GetDatabase();
+
+            var mongoImporter = new MongoImporter();
+            var products = mongoImporter.GetAllProducts(mongoDatabase, "Products");
+
+            foreach (var product in products)
+            {
+                dbContext.Products.Add(product);
+            }
+
+            dbContext.SaveChanges();
 
         }
+
     }
+}
 

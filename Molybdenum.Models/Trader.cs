@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Xml.Serialization;
 
     public class Trader
     {
@@ -25,6 +26,7 @@
 
         public int NumberOfShops { get; set; }
 
+        [XmlIgnore]
         public virtual ICollection<Sale> Sales
         {
             get

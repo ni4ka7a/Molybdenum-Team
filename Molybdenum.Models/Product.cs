@@ -28,7 +28,6 @@
         public int MeasureId { get; set; }
 
         [MaxLength(50)]
-        [Index(IsUnique = true)] 
         public string Formula { get; set; }
 
         [Required]

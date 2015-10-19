@@ -80,6 +80,10 @@
       <Project>{efb2fa56-b27f-4b77-93de-fda484e3bc5b}</Project>
       <Name>Chemicals.ReportingServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chemicals.XmlData\Chemicals.XmlData.csproj">
+      <Project>{f3feb095-cbf8-4287-8411-79a329109bb8}</Project>
+      <Name>Chemicals.XmlData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.SQLServer.csproj">
       <Project>{aa50b7b3-3127-4e78-8f79-c3b7f6725f14}</Project>
       <Name>Chemicals.Data.SQLServer</Name>
