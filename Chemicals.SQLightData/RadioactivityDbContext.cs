@@ -4,6 +4,11 @@
 
     public class RadioactivityDbContext : DbContext
     {
+
+        public RadioactivityDbContext()
+            : base("RadioactivityDb")
+        {
+        }
         public DbSet<RadioactiveProduct> RadioactiveProducts { get; set; }
     }
 }

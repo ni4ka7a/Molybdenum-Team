@@ -41,7 +41,9 @@
             ImportSalesFromExcel();
 
 
-         
+            ImportProducesFromExcel();
+
+
             //IZipExtractor zipExtractor = new ZipExtractor();
             //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
             //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
@@ -71,13 +73,27 @@
 
         }
 
+        private static void ImportProducesFromExcel()
+        {
+            var db = new ChemicalsDbContext();
+
+            IZipExtractor zipExtractor = new ZipExtractor();
+            ExcelImporter<Produce> k = new ExcelImporter<Produce>(zipExtractor);
+            ICollection<Produce> produces = k.ImportModelsDataFromZipFile("../../../Files/Produces.zip", "./tests1");
+
+            foreach (var item in produces)
+            {
+                System.Console.WriteLine(item.ProducedDate);
+            }
+        }
+
         private static void ImportSalesFromExcel()
         {
             var db = new ChemicalsDbContext();
 
             IZipExtractor zipExtractor = new ZipExtractor();
             ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
-            ICollection<Sale> sales = k.ImportModelsDataFromZipFile("../../../Files/Files.zip");
+            ICollection<Sale> sales = k.ImportModelsDataFromZipFile("../../../Files/Sales.zip", "./tests2");
 
             foreach (var item in sales)
             {

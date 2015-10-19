@@ -91,6 +91,7 @@
                 T newObject = new T();
                 for (int index = 0; index < dataReader.FieldCount; index++)
                 {
+                    var p = dataReader.GetName(index);
                     PropertyInfo info = propertyDictionary[dataReader.GetName(index)];
                     if ((info != null) && info.CanWrite)
                     {
