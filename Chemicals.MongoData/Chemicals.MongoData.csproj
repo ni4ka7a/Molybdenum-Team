@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MongoDb\MongoExporter.cs" />
     <Compile Include="MongoDb\MongoImporter.cs" />
     <Compile Include="MongoDb\MongoProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,6 +11,9 @@
 
     public class MongoImporter
     {
+        private const string TradersCollectionName = "Traders";
+        private const string ManufecturersCollectionName = "Manufecturers";
+
         public MongoImporter()
         {
         }
@@ -22,5 +25,22 @@
 
             return rest;
         }
+
+        public ICollection<Trader> GetAllTraders(IMongoDatabase database)
+        {
+            var collection = database.GetCollection<Trader>(TradersCollectionName);
+            var rest = collection.Find(t => true).ToListAsync().Result;
+
+            return rest;
+        }
+
+        public ICollection<Manufacturer> GetAllManufacturers(IMongoDatabase database)
+        {
+            var collection = database.GetCollection<Manufacturer>(TradersCollectionName);
+            var rest = collection.Find(t => true).ToListAsync().Result;
+
+            return rest;
+        }
+
     }
 }
