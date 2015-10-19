@@ -12,7 +12,7 @@
 
     public class PdfReportGenerator
     {
-        private const string ReportsPath = "../../test.pdf";
+        private const string ReportsPath = "../../report.pdf";
 
         public PdfReportGenerator()
         {
@@ -32,10 +32,10 @@
 
             reportDocument.Open();
 
-            PdfPTable reportTable = new PdfPTable(4);
+            PdfPTable reportTable = new PdfPTable(6);
             reportTable.HorizontalAlignment = Element.ALIGN_LEFT;
             PdfPCell headerCell = new PdfPCell(new Phrase("Produced products information", boldFont));
-            headerCell.Colspan = 4;
+            headerCell.Colspan = 6;
             headerCell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
             reportTable.AddCell(headerCell);
 
@@ -43,10 +43,12 @@
 
             foreach (var item in deals)
             {
-                reportTable.AddCell(item.GetType().GetProperty("Name").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("Address").GetValue(item, null));
                 reportTable.AddCell(item.GetType().GetProperty("ProductName").GetValue(item, null));
+                reportTable.AddCell(item.GetType().GetProperty("Quantity").GetValue(item, null));
+                reportTable.AddCell(item.GetType().GetProperty("PricePerUnit").GetValue(item, null));
+                reportTable.AddCell(item.GetType().GetProperty("Address").GetValue(item, null));
                 reportTable.AddCell(item.GetType().GetProperty("Formula").GetValue(item, null));
+                reportTable.AddCell(item.GetType().GetProperty("TotalIncome").GetValue(item, null));
             }
 
             reportDocument.Add(reportTable);
@@ -55,19 +57,37 @@
 
         public void PutHeadCells(PdfPTable table)
         {
-            var manufacturerNameCell = new PdfPCell(new Phrase("Manufacturer name"));
-            var manufacturerAddressCell = new PdfPCell(new Phrase("Manufacturer address"));
-            var productNameCell = new PdfPCell(new Phrase("Product Name"));
-            var productFormulaCell = new PdfPCell(new Phrase("Product Formula"));
+            var productName = new PdfPCell(new Phrase("Product name"));
+            var quantity = new PdfPCell(new Phrase("Quantity"));
+            var pricePerUnit = new PdfPCell(new Phrase("Price Per Unit"));
+            var address = new PdfPCell(new Phrase("Manufacturer address"));
+            var formula = new PdfPCell(new Phrase("Product Formula"));
+            var totalIncome = new PdfPCell(new Phrase("Total Income"));
 
-            manufacturerNameCell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            manufacturerAddressCell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            productNameCell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            productFormulaCell.BackgroundColor = BaseColor.LIGHT_GRAY;
-            table.AddCell(manufacturerNameCell);
-            table.AddCell(manufacturerAddressCell);
-            table.AddCell(productNameCell);
-            table.AddCell(productFormulaCell);
+
+            //manufacturerNameCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            //manufacturerAddressCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            //productNameCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            //productFormulaCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            //table.AddCell(manufacturerNameCell);
+            //table.AddCell(manufacturerAddressCell);
+            //table.AddCell(productNameCell);
+            //table.AddCell(productFormulaCell);
+
+            productName.BackgroundColor = BaseColor.LIGHT_GRAY;
+            quantity.BackgroundColor = BaseColor.LIGHT_GRAY;
+            pricePerUnit.BackgroundColor = BaseColor.LIGHT_GRAY;
+            address.BackgroundColor = BaseColor.LIGHT_GRAY;
+            formula.BackgroundColor = BaseColor.LIGHT_GRAY;
+            totalIncome.BackgroundColor = BaseColor.LIGHT_GRAY;
+
+            table.AddCell(productName);
+            table.AddCell(quantity);
+            table.AddCell(pricePerUnit);
+            table.AddCell(address);
+            table.AddCell(formula);
+            table.AddCell(totalIncome);
+
         }
     }
 }

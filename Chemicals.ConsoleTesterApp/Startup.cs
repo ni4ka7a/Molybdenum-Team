@@ -35,7 +35,7 @@
             // TODO: test when sels are added
             //GenerateJsonReports();
 
-            //GeneratePdfReports();
+            GeneratePdfReports();
 
             //ImportSalesFromExcel();
 
@@ -147,21 +147,45 @@
 
         private static void GeneratePdfReports()
         {
-            var pdfReportsGenerator = new PdfReportGenerator();
+            //var pdfReportsGenerator = new PdfReportGenerator();
+
+            //var dbContext = new ChemicalsDbContext();
+
+            //var deals = dbContext.Produces
+            //        .Select(d => new
+            //        {
+            //            d.Id,
+            //            d.Manufacturer.Name,
+            //            ProductName = d.Product.Name,
+            //            d.Manufacturer.Address,
+            //            d.Product.Formula
+            //        }).ToList();
+
+            //pdfReportsGenerator.GenerateReport(deals);
 
             var dbContext = new ChemicalsDbContext();
 
-            var deals = dbContext.Produces
-                    .Select(d => new
-                    {
-                        d.Id,
-                        d.Manufacturer.Name,
-                        ProductName = d.Product.Name,
-                        d.Manufacturer.Address,
-                        d.Product.Formula
-                    }).ToList();
+            var sales = dbContext
+                .Sales
+                .Where(s => s.SaleDate.Year == 2013)
+                .Select(s => new
+                {
+                    ProductName = s.Product.Name,
+                    s.Trader.Address,
+                    Quantity = s.Quantity + " " + s.Product.Measure.MeasureName,
+                    PricePerUnit = s.Product.PricePerUnit.ToString(),
+                    s.SaleDate,
+                    s.Product.Formula,
+                    TotalIncome = (s.Quantity * s.Product.PricePerUnit).ToString()
+                })
+                .ToList();
 
-            pdfReportsGenerator.GenerateReport(deals);
+           
+
+
+            var pdfReportsGenerator = new PdfReportGenerator();
+            pdfReportsGenerator.GenerateReport(sales);
+
         }
 
         // TODO: add path to the method
