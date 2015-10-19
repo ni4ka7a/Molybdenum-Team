@@ -1,14 +1,10 @@
 ﻿namespace Chemicals.XmlData
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.IO;
     using System.Xml.Serialization;
 
-    using Chemicals.Models;
-    using System.IO;
+    using Models;
 
     public class XmlDataImporter
     {

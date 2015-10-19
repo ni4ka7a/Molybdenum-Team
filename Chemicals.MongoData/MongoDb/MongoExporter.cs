@@ -1,14 +1,9 @@
 ﻿namespace Chemicals.MongoData.MongoDb
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
+    using Models;
     using MongoDB.Driver;
-
-    using Chemicals.Models;
 
     public class MongoExporter
     {
