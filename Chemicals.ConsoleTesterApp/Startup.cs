@@ -25,9 +25,9 @@
             var db = new ChemicalsDbContext();
             var manufacturer = new Manufacturer() { Name = "PSI", NumberOfFactories = 5, Address = "Aleksandar Malinov 102" };
 
-            db.Manufacturers.AddOrUpdate(manufacturer);
-          //  db.SaveChanges();
-            System.Console.WriteLine(db.Manufacturers.Count());
+            //db.Manufacturers.AddOrUpdate(manufacturer);
+            db.SaveChanges();
+            //System.Console.WriteLine(db.Manufacturers.Count());
             //IZipExtractor zipExtractor = new ZipExtractor();
             //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
             //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
@@ -71,52 +71,52 @@
 
             //// Generate XML report
 
-            using (db = new ChemicalsDbContext())
-            {
-                var manufacturers = (from man in db.Manufacturers.Include("Name")
-                                     join p in db.Produces on man.Id equals p.ManufacturerId
-                                     join pr in db.Products.Include("Name").Include("Formula") on p.ProductId equals pr.Id
-                                     select new
-                                     {
-                                         ManufacturerName = man.Name,
-                                         ProductName = pr.Name,
-                                         Amount = p.Amount,
-                                         Formula = pr.Formula
-                                     }).ToList();
+            //using (db = new ChemicalsDbContext())
+            //{
+            //    var manufacturers = (from man in db.Manufacturers.Include("Name")
+            //                         join p in db.Produces on man.Id equals p.ManufacturerId
+            //                         join pr in db.Products.Include("Name").Include("Formula") on p.ProductId equals pr.Id
+            //                         select new
+            //                         {
+            //                             ManufacturerName = man.Name,
+            //                             ProductName = pr.Name,
+            //                             Amount = p.Amount,
+            //                             Formula = pr.Formula
+            //                         }).ToList();
 
 
-                var manufacturersList = new List<XmlManufacturer>();
-                var productsList = new List<XmlProduct>();
+            //    var manufacturersList = new List<XmlManufacturer>();
+            //    var productsList = new List<XmlProduct>();
 
-                foreach (var man in manufacturers)
-                {
-                    productsList.Add(new XmlProduct
-                    {
-                        Name = man.ProductName,
-                        Amout = man.Amount,
-                        Formula = man.Formula
-                    });
+            //    foreach (var man in manufacturers)
+            //    {
+            //        productsList.Add(new XmlProduct
+            //        {
+            //            Name = man.ProductName,
+            //            Amout = man.Amount,
+            //            Formula = man.Formula
+            //        });
 
-                    var currentManufacturer = new XmlManufacturer
-                    {
-                        Name = man.ManufacturerName,
-                        Products = productsList
-                    };
+            //        var currentManufacturer = new XmlManufacturer
+            //        {
+            //            Name = man.ManufacturerName,
+            //            Products = productsList
+            //        };
 
-                    manufacturersList.Add(currentManufacturer);
-                }
+            //        manufacturersList.Add(currentManufacturer);
+            //    }
 
-                var currentReport = new XmlReportModel
-                {
-                    Manufacturers = manufacturersList
-                };
+            //    var currentReport = new XmlReportModel
+            //    {
+            //        Manufacturers = manufacturersList
+            //    };
 
-                var reportGenerator = new XmlReportGenerator();
-                reportGenerator.ExportXmlReport(currentReport);
+            //    var reportGenerator = new XmlReportGenerator();
+            //    reportGenerator.ExportXmlReport(currentReport);
 
             }
 
 
         }
     }
-}
+
