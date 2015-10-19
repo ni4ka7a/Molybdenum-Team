@@ -9,8 +9,8 @@
             using (var db = new RadioactivityDbContext())
             {
                 RadioactiveProduct product = new RadioactiveProduct();
-                product.Radioactivity = 4;
-                product.ProductName = "djas";
+                product.Radioactivity = 5;
+                product.ProductName = "jfksdjgdlk";
                 db.RadioactiveProducts.Add(product);
 
                 db.SaveChanges();

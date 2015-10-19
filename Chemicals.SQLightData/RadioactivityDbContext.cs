@@ -8,7 +8,9 @@
         public RadioactivityDbContext()
             : base("RadioactivityDb")
         {
+            this.Database.CreateIfNotExists();
         }
+
         public DbSet<RadioactiveProduct> RadioactiveProducts { get; set; }
     }
 }
