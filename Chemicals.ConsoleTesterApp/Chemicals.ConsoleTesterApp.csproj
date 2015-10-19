@@ -40,8 +40,18 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.0.1\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.0.1\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,9 +68,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Chemicals.ExcelImporter\Chemicals.ExcelImporter.csproj">
+    <ProjectReference Include="..\Chemicals.ExcelImporter\Chemicals.ExcelDataIE.csproj">
       <Project>{099b7988-86bd-4c81-b147-033f0d1f5b9e}</Project>
-      <Name>Chemicals.ExcelImporter</Name>
+      <Name>Chemicals.ExcelDataIE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chemicals.MongoData\Chemicals.MongoData.csproj">
+      <Project>{c3ff09fa-1ed1-4030-b059-86452839e655}</Project>
+      <Name>Chemicals.MongoData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Chemicals.ReportingServices\Chemicals.ReportingServices.csproj">
+      <Project>{efb2fa56-b27f-4b77-93de-fda484e3bc5b}</Project>
+      <Name>Chemicals.ReportingServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Molybdenum.Data\Chemicals.Data.SQLServer.csproj">
       <Project>{aa50b7b3-3127-4e78-8f79-c3b7f6725f14}</Project>

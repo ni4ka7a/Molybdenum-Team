@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTrader xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Trader>
+    <Id>1</Id>
+    <Name>BRENNTAG GROUP</Name>
+    <Address>Mulheim an der Ruhr, Germany</Address>
+    <NumberOfShops>10</NumberOfShops>
+  </Trader>
+  <Trader>
+    <Id>2</Id>
+    <Name>UNIVAR</Name>
+    <Address>Washington, USA</Address>
+    <NumberOfShops>15</NumberOfShops>
+  </Trader>
+  <Trader>
+    <Id>3</Id>
+    <Name>HELM</Name>
+    <Address>Hamburg, Germany</Address>
+    <NumberOfShops>8</NumberOfShops>
+  </Trader>
+    <Trader>
+    <Id>4</Id>
+    <Name>NEXEO SOLUTIONS</Name>
+    <Address>Ohio, USA</Address>
+    <NumberOfShops>33</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>5</Id>
+    <Name>ICC CHEMICAL</Name>
+    <Address>New York, USA</Address>
+    <NumberOfShops>10</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>6</Id>
+    <Name>AZELIS</Name>
+    <Address>Antwerp, Belgium</Address>
+    <NumberOfShops>5</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>7</Id>
+    <Name>IMCD GROUP</Name>
+    <Address>Rotterdam, Netherlands</Address>
+    <NumberOfShops>12</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>8</Id>
+    <Name>BIESTERFELD</Name>
+    <Address>Hamburg, Germany</Address>
+    <NumberOfShops>17</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>9</Id>
+    <Name>DKSH</Name>
+    <Address>Zurich, Switzerland </Address>
+    <NumberOfShops>15</NumberOfShops>
+  </Trader>
+    <Trader>
+    <Id>10</Id>
+    <Name>CONNELL BROTHERS</Name>
+    <Address> California, USA</Address>
+    <NumberOfShops>5</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>11</Id>
+    <Name>QUIMIDROGA</Name>
+    <Address>Barcelona, Spain</Address>
+    <NumberOfShops>3</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>12</Id>
+    <Name>CALDIC</Name>
+    <Address>Rotterdam, Netherlands</Address>
+    <NumberOfShops>14</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>13</Id>
+    <Name>BARENTZ EUROPE</Name>
+    <Address>Hoofddorp, Netherlands</Address>
+    <NumberOfShops>4</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>14</Id>
+    <Name>TER GROUP</Name>
+    <Address>Hamburg, Germany</Address>
+    <NumberOfShops>5</NumberOfShops>
+  </Trader>
+    <Trader>
+    <Id>15</Id>
+    <Name>PROTEA CHEMICALS</Name>
+    <Address>Bryanston, South Africa</Address>
+    <NumberOfShops>9</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>16</Id>
+    <Name>PETROCHEM MIDDLE EAST</Name>
+    <Address>Dubai, United Arab Emirates</Address>
+    <NumberOfShops>3</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>17</Id>
+    <Name>INDUKERN</Name>
+    <Address>Barcelona, Spain</Address>
+    <NumberOfShops>5</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>18</Id>
+    <Name>STOCKMEIER CHEMIE</Name>
+    <Address>Bielefeld, Germany</Address>
+    <NumberOfShops>7</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>19</Id>
+    <Name>PRINOVA</Name>
+    <Address>Illinois, USA</Address>
+    <NumberOfShops>12</NumberOfShops>
+  </Trader> 
+   <Trader>
+    <Id>20</Id>
+    <Name>QUANTIQ</Name>
+    <Address>Sao Paulo, Brazil</Address>
+    <NumberOfShops>4</NumberOfShops>
+  </Trader>
+</ArrayOfTrader>

@@ -1,4 +1,4 @@
-﻿namespace Chemicals.ExcelImporter
+﻿namespace Chemicals.ExcelDataIE
 {
     using Chemicals.ExcelImporter.Contracts;
 

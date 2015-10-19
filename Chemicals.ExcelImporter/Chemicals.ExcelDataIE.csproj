@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3FF09FA-1ED1-4030-B059-86452839E655}</ProjectGuid>
+    <ProjectGuid>{099B7988-86BD-4C81-B147-033F0D1F5B9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Chemicals.ImportData</RootNamespace>
-    <AssemblyName>Chemicals.ImportData</AssemblyName>
+    <RootNamespace>Chemicals.ExcelDataIE</RootNamespace>
+    <AssemblyName>Chemicals.ExcelDataIE</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\packages\MongoDB.Bson.2.0.1\lib\net45\MongoDB.Bson.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.0.4\lib\net20\EPPlus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\MongoDB.Driver.2.0.1\lib\net45\MongoDB.Driver.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Core">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.0.1\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unofficial.Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,19 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MongoDb\MongoImporter.cs" />
-    <Compile Include="MongoDb\MongoProvider.cs" />
+    <Compile Include="Contracts\IZipExtractor.cs" />
+    <Compile Include="ExcelExporter.cs" />
+    <Compile Include="ExcelImporter.cs" />
+    <Compile Include="ZipExtractor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Content Include="Ionic.Zip.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Molybdenum.Models\Chemicals.Models.csproj">
-      <Project>{c65ff474-d22d-4dbb-81bc-3ed43a255953}</Project>
-      <Name>Chemicals.Models</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

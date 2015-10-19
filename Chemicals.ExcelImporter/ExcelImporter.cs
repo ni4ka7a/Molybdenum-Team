@@ -1,4 +1,4 @@
-﻿namespace Chemicals.ExcelImporter
+﻿namespace Chemicals.ExcelDataIE
 {
     using System;
     using System.Collections.Generic;
@@ -10,29 +10,29 @@
 
     using Chemicals.ExcelImporter.Contracts;
 
-    public class ExelImporter
+    public class ExcelImporter<T> where T : new()
     {
         private IZipExtractor zipExtractor;
 
-        public ExelImporter()
+        public ExcelImporter(IZipExtractor zippExtractor)
         {
-            this.zipExtractor = new ZipExtractor();
+            this.zipExtractor = zippExtractor;
         }
 
-        public ICollection<T> ImportModelsDataFromZipFile<T>(string zipFilePath, string extractToPath = "./tests") where T : new()
+        public ICollection<T> ImportModelsDataFromZipFile(string zipFilePath, string extractToPath = "./tests")
         {
             this.zipExtractor.Extract(zipFilePath, extractToPath);
-            return this.ImportModelsDataFromDirectory<T>(extractToPath);
+            return this.ImportModelsDataFromDirectory(extractToPath);
         }
 
-        public ICollection<T> ImportModelsDataFromDirectory<T>(string directoryPath) where T : new()
+        public ICollection<T> ImportModelsDataFromDirectory(string directoryPath) 
         {
             IEnumerable<string> filePaths = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
             ICollection<T> importedModel = new HashSet<T>();
 
             foreach (var path in filePaths)
             {
-                foreach (var model in this.ImportModelsDataFromFile<T>(path))
+                foreach (var model in this.ImportModelsDataFromFile(path))
                 {
                     importedModel.Add(model);
                 }
@@ -41,7 +41,7 @@
             return importedModel;
         }
 
-        public ICollection<T> ImportModelsDataFromFile<T>(string filePath) where T : new()
+        public ICollection<T> ImportModelsDataFromFile(string filePath)
         {
             OleDbConnection connection = new OleDbConnection();
 
@@ -66,7 +66,7 @@
 
                     using (DataTableReader reader = dataSet.CreateDataReader())
                     {
-                        importedModels = this.MapDataToModelsCollection<T>(reader);
+                        importedModels = this.MapDataToModelsCollection(reader);
                     }
                 }
 
@@ -74,37 +74,37 @@
             }
         }
 
-        private ICollection<T> MapDataToModelsCollection<T>(IDataReader dr) where T : new()
+        private ICollection<T> MapDataToModelsCollection(IDataReader dataReader)
         {
             Type businessEntityType = typeof(T);
-            ICollection<T> entitys = new HashSet<T>();
-            Dictionary<string, PropertyInfo> hashtable = new Dictionary<string, PropertyInfo>();
+            ICollection<T> modelsCollection = new HashSet<T>();
+            Dictionary<string, PropertyInfo> propertyDictionary = new Dictionary<string, PropertyInfo>();
             PropertyInfo[] properties = businessEntityType.GetProperties();
 
             foreach (PropertyInfo info in properties)
             {
-                hashtable[info.Name.ToUpper()] = info;
+                propertyDictionary[info.Name.ToUpper()] = info;
             }
 
-            while (dr.Read())
+            while (dataReader.Read())
             {
                 T newObject = new T();
-                for (int index = 0; index < dr.FieldCount; index++)
+                for (int index = 0; index < dataReader.FieldCount; index++)
                 {
-                    PropertyInfo info = hashtable[dr.GetName(index).ToUpper()];
+                    PropertyInfo info = propertyDictionary[dataReader.GetName(index).ToUpper()];
                     if ((info != null) && info.CanWrite)
                     {
-                        var k = dr.GetValue(index);
+                        var k = dataReader.GetValue(index);
                         var v = Convert.ChangeType(k, info.PropertyType);
                         info.SetValue(newObject, v, null);
                     }
                 }
 
-                entitys.Add(newObject);
+                modelsCollection.Add(newObject);
             }
 
-            dr.Close();
-            return entitys;
+            dataReader.Close();
+            return modelsCollection;
         }
     }
 }

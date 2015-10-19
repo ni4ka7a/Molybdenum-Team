@@ -44,9 +44,16 @@
   <ItemGroup>
     <Compile Include="PdfReportGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlReportGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Molybdenum.Models\Chemicals.Models.csproj">
+      <Project>{c65ff474-d22d-4dbb-81bc-3ed43a255953}</Project>
+      <Name>Chemicals.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

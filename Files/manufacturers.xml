@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfManufacturer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Manufacturer>
+    <Id>1</Id>
+    <Name>BASF</Name>
+    <Address>Ludwigshafen, Germany</Address>
+    <NumberOfFactories>43</NumberOfFactories>
+  </Manufacturer>
+  <Manufacturer>
+    <Id>2</Id>
+    <Name>Sinopec</Name>
+    <Address>Beijing, China</Address>
+    <NumberOfFactories>32</NumberOfFactories>
+  </Manufacturer>
+  <Manufacturer>
+    <Id>3</Id>
+    <Name>Dow Chemical</Name>
+    <Address>Midland, USA</Address>
+    <NumberOfFactories>23</NumberOfFactories>
+  </Manufacturer>
+   <Manufacturer>
+    <Id>4</Id>
+    <Name>SABIC</Name>
+    <Address>Riyadh, Saudi Arabia</Address>
+    <NumberOfFactories>20</NumberOfFactories>
+  </Manufacturer>
+   <Manufacturer>
+    <Id>5</Id>
+    <Name>Royal Dutch Shell</Name>
+    <Address>The Hague, Netherlands</Address>
+    <NumberOfFactories>31</NumberOfFactories>
+  </Manufacturer>
+   <Manufacturer>
+    <Id>6</Id>
+    <Name>ExxonMobil</Name>
+    <Address>Irving, USA</Address>
+    <NumberOfFactories>22</NumberOfFactories>
+  </Manufacturer>
+  <Manufacturer>
+    <Id>7</Id>
+    <Name>Formosa Plastics</Name>
+    <Address>Taipei, Taiwan</Address>
+    <NumberOfFactories>20</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>8</Id>
+    <Name>LyondellBasell</Name>
+    <Address>Houston, USA</Address>
+    <NumberOfFactories>11</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>9</Id>
+    <Name>DuPont</Name>
+    <Address>Wilmington, USA</Address>
+    <NumberOfFactories>10</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>10</Id>
+    <Name>Ineos</Name>
+    <Address>Rolle, Switzerland</Address>
+    <NumberOfFactories>10</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>11</Id>
+    <Name>Mitsubishi Chemical</Name>
+    <Address>Tokyo, Japan</Address>
+    <NumberOfFactories>15</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>12</Id>
+    <Name>Bayer</Name>
+    <Address>Leverkusen, Germany</Address>
+    <NumberOfFactories>18</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>13</Id>
+    <Name>LG Chem</Name>
+    <Address>Seoul, South Korea</Address>
+    <NumberOfFactories>25</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>14</Id>
+    <Name>AkzoNobel</Name>
+    <Address>Amsterdam, Netherlands</Address>
+    <NumberOfFactories>20</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>15</Id>
+    <Name>Air Liquide</Name>
+    <Address>Paris, France</Address>
+    <NumberOfFactories>3</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>16</Id>
+    <Name>Braskem</Name>
+    <Address>São Paulo, Brazil</Address>
+    <NumberOfFactories>5</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>17</Id>
+    <Name>Mitsui Chemicals</Name>
+    <Address>Tokyo, Japan</Address>
+    <NumberOfFactories>15</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>18</Id>
+    <Name>The Linde Group</Name>
+    <Address>Munich, Germany</Address>
+    <NumberOfFactories>12</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>19</Id>
+    <Name>Sumitomo Chemical</Name>
+    <Address>Tokyo, Japan</Address>
+    <NumberOfFactories>8</NumberOfFactories>
+  </Manufacturer><Manufacturer>
+    <Id>20</Id>
+    <Name>Reliance Industries</Name>
+    <Address>Mumbai, India</Address>
+    <NumberOfFactories>10</NumberOfFactories>
+  </Manufacturer>
+</ArrayOfManufacturer>
