@@ -15,13 +15,12 @@ namespace Chemicals.Data.SQLServer.Migrations
 
         protected override void Seed(ChemicalsDbContext context)
         {
-            //context.Traders.AddOrUpdate(
-            //    a => a.Name,
-            //    new Trader { Name = "Pesho", Address = "Aleksandra Malinov 203", NumberOfShops = 4 },
-            //    new Trader { Name = "Gosho", Address = "Aleksandra Malinov 203", NumberOfShops = 3 },
-            //    new Trader { Name = "Trajko", Address = "Aleksandra Malinov 203", NumberOfShops = 2 },
-            //    new Trader { Name = "Marko", Address = "Aleksandra Malinov 203", NumberOfShops = 3 });
-
+            ////context.Traders.AddOrUpdate(
+            ////    a => a.Name,
+            ////    new Trader { Name = "Pesho", Address = "Aleksandra Malinov 203", NumberOfShops = 4 },
+            ////    new Trader { Name = "Gosho", Address = "Aleksandra Malinov 203", NumberOfShops = 3 },
+            ////    new Trader { Name = "Trajko", Address = "Aleksandra Malinov 203", NumberOfShops = 2 },
+            ////    new Trader { Name = "Marko", Address = "Aleksandra Malinov 203", NumberOfShops = 3 });
 
             context.Types.AddOrUpdate(
                 t => t.TypeName,

@@ -1,49 +1,48 @@
 ﻿namespace Chemicals.ConsoleTesterApp
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Data.Entity;
-    using System.Data.Entity.Migrations;
     using System.Linq;
-    using System.Configuration;
 
-    using Chemicals.Data.SQLServer;
-    using Chemicals.Data.SQLServer.Migrations;
-    using Chemicals.ExcelDataIE;
-    using Chemicals.ExcelImporter;
-    using Chemicals.ExcelImporter.Contracts;
-    using Chemicals.Models;
-    using Chemicals.MongoData.MongoDb;
-    using XmlReport;
-    using XmlData;
-    using Export.JSON;
+    using Data.SQLServer;
     using DataImport;
+    using ExcelDataIE;
+    using ExcelImporter.Contracts;
+    using Export.JSON;
+    using Models;
+    using MongoData.MongoDb;
+    using MySqlData;
+    using MySqlData.Models;
+    using Telerik.OpenAccess;
+    using XmlData;
+    using XmlReport;
 
     public class Startup
     {
         public static void Main()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
-
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
 
             //ImportDataFromMongo();
 
             //ImportTradersFromXml("../../../Files/traders.xml");
             //ImportManufacturersFromXml("../../../Files/manufacturers.xml");
 
-            //GenerateXmlReports();
+            //GenerateXmlReports("../../../ManufacturerersReport.xml");
 
             // TODO: test when sels are added
             //GenerateJsonReports();
 
             //GeneratePdfReports();
 
-            ImportSalesFromExcel();
+            //ImportSalesFromExcel();
 
-
+<<<<<<< HEAD
             ImportProducesFromExcel();
 
 
+=======
+>>>>>>> f21c78b5aeeeb299c2c84b093fbfe5b2fc28e707
             //IZipExtractor zipExtractor = new ZipExtractor();
             //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
             //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
@@ -70,7 +69,25 @@
             //}
 
             //db.SaveChanges();
+        }
 
+        private static void MySqlDataTest()
+        {
+            using (var dbContext = new FluentModelContent())
+            {
+                Report newReport = new Report
+                {
+                    Name = "First Report",
+                    Type = "First type",
+                    Vendor = "Stamat",
+                    PricePerUnit = "13",
+                    Sold = "14",
+                    TotalIncome = "515"
+                };
+
+                dbContext.Add(newReport);
+                dbContext.SaveChanges();
+            }
         }
 
         private static void ImportProducesFromExcel()
@@ -99,6 +116,7 @@
             {
                 System.Console.WriteLine(item.TraderId);
             }
+
             //ExcelExporter<Sale> l = new ExcelExporter<Sale>();
             //l.ExportDataModelsCollectionToExcelFile(@".\", "Test2", "Test3", sales);
 
@@ -152,8 +170,7 @@
             ExportSQLToJSON.ExportProducts(listOfProducts, "../../Reports/");
         }
 
-        // TODO: add path to the method
-        private static void GenerateXmlReports()
+        private static void GenerateXmlReports(string pathToSave)
         {
             using (var db = new ChemicalsDbContext())
             {
@@ -168,35 +185,34 @@
                                          Formula = pr.Formula
                                      }).ToList();
 
-
                 var manufacturersList = new List<XmlManufacturer>();
                 var productsList = new List<XmlProduct>();
 
-                foreach (var man in manufacturers)
+                foreach (var manufacturer in manufacturers)
                 {
                     productsList.Add(new XmlProduct
                     {
-                        Name = man.ProductName,
-                        Amout = man.Amount,
-                        Formula = man.Formula
+                        Name = manufacturer.ProductName,
+                        Amout = manufacturer.Amount,
+                        Formula = manufacturer.Formula
                     });
 
                     var currentManufacturer = new XmlManufacturer
                     {
-                        Name = man.ManufacturerName,
+                        Name = manufacturer.ManufacturerName,
                         Products = productsList
                     };
 
                     manufacturersList.Add(currentManufacturer);
                 }
 
-                var currentReport = new XmlReportModel
+                var report = new XmlReportModel
                 {
                     Manufacturers = manufacturersList
                 };
 
                 var reportGenerator = new XmlReportGenerator();
-                reportGenerator.ExportXmlReport(currentReport);
+                reportGenerator.ExportXmlReport(report, pathToSave);
             }
         }
 
@@ -253,9 +269,6 @@
             }
 
             dbContext.SaveChanges();
-
         }
-
     }
 }
-

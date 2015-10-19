@@ -1,7 +1,6 @@
 ﻿namespace Chemicals.SQLightData
 {
     using System;
-    using System.Linq;
 
     public class Program
     {
@@ -9,7 +8,7 @@
         {
             using (var db = new RadioactivityDbContext())
             {
-                RadioactiveProduct product= new RadioactiveProduct();
+                RadioactiveProduct product = new RadioactiveProduct();
                 product.Radioactivity = 4;
                 product.ProductName = "djas";
                 db.RadioactiveProducts.Add(product);
@@ -20,7 +19,7 @@
                 {
                     Console.WriteLine(radioactiveProduct.ProductName);
                 }
-               // Console.WriteLine(db.RadioactiveProducts.Count());
+                // Console.WriteLine(db.RadioactiveProducts.Count());
             }
         }
     }
