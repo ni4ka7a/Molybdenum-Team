@@ -14,14 +14,14 @@
         {
         }
 
-        public void ImportTraders(IMongoDatabase database, ICollection<Trader> traders)
+        public void ExportTraders(IMongoDatabase database, ICollection<Trader> traders)
         {
             var collection = database.GetCollection<Trader>(TradersCollectionName);
 
             collection.InsertManyAsync(traders).Wait();
         }
 
-        public void ImportManufacturers(IMongoDatabase database, ICollection<Manufacturer> manufacturers)
+        public void ExportManufacturers(IMongoDatabase database, ICollection<Manufacturer> manufacturers)
         {
             var collection = database.GetCollection<Manufacturer>(ManufecturersCollectionName);
 

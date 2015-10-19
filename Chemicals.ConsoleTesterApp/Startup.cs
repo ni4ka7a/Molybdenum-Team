@@ -21,64 +21,102 @@
 
     public class Startup
     {
+        private const string TradersXmlFileName = "../../../Files/traders.xml";
+        private const string ManufacturersXmlFileName = "../../../Files/manufacturers.xml";
+        private const string XmlReportSavePath = "../../report.xml";
+
         public static void Main()
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
+            // System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
 
-            //ImportDataFromMongo();
-
-            //ImportTradersFromXml("../../../Files/traders.xml");
-            //ImportManufacturersFromXml("../../../Files/manufacturers.xml");
-
-            //GenerateXmlReports("../../../ManufacturerersReport.xml");
-
-            // TODO: test when sels are added
-            //GenerateJsonReports();
-
-            //GeneratePdfReports();
-
-            //ImportSalesFromExcel();
-
-            //ImportProducesFromExcel();
-
-            //ExportDataFromJsonReportsToMySql();
-
-           // SQLightData.Program.Main();
-
-            using (var db = new RadioactivityDbContext())
+            while (true)
             {
-                RadioactiveProduct product = new RadioactiveProduct();
-                product.Radioactivity = 5;
-                product.ProductName = "jfksdjgdlk";
-                db.RadioactiveProducts.Add(product);
+                Console.WriteLine("Enter command:");
 
-                db.SaveChanges();
+                Console.WriteLine("1.Load data from mongoDB");
+                Console.WriteLine("2.Load data from xml");
+                Console.WriteLine("3.Load data from Excel");
+                Console.WriteLine("4.Get all products from Sql Server");
+                Console.WriteLine("5.Generate PDF Report");
+                Console.WriteLine("6.Generate XML Report");
+                Console.WriteLine("7.Generate JSON Reports");
+                Console.WriteLine("8.Load JSON Reports to MySql");
+                Console.WriteLine("9.Generate Excel table from Mysql Data");
+                var command = int.Parse(Console.ReadLine());
 
-                foreach (var radioactiveProduct in db.RadioactiveProducts)
+                switch (command)
                 {
-                    Console.WriteLine(radioactiveProduct.ProductName);
+                    case 1:
+                        ImportDataFromMongo();
+                        break;
+                    case 2:
+                        ImportManufacturersFromXml(ManufacturersXmlFileName);
+                        ImportTradersFromXml(TradersXmlFileName);
+                        break;
+                    case 3:
+                        ImportProducesFromExcel();
+                        ImportSalesFromExcel();
+                        break;
+                    case 4:
+                        GetAllProducts();
+                        break;
+                    case 5:
+                        GeneratePdfReports();
+                        break;
+                    case 6:
+                        GenerateXmlReports(XmlReportSavePath);
+                        break;
+                    case 7:
+                        GenerateJsonReports();
+                        break;
+                    case 8:
+                        ExportDataFromJsonReportsToMySql();
+                        break;
+                    case 9:
+                        ExportReportsToExcel();
+                        break;
+                    default:
+                        break;
                 }
-                // Console.WriteLine(db.RadioactiveProducts.Count());
+
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadLine();
+                Console.Clear();
             }
         }
 
-        // TODO: working! (for now)
+        private static void GetAllProducts()
+        {
+            using (var dbContext = new ChemicalsDbContext())
+            {
+                var products = dbContext.Products.ToList();
+
+                foreach (var product in products)
+                {
+                    Console.WriteLine(
+                        "{0}, {1}, {2}, {3}",
+                        product.Id, product.Name, product.Formula, product.PricePerUnit);
+                }
+            }
+        }
+
+        private static void ExportReportsToExcel()
+        {
+            using (var dbContext = new FluentModelContent())
+            {
+                var reports = dbContext.Reports.ToList();
+
+                var excelExporter = new ExcelExporter<Report>();
+                excelExporter.ExportDataModelsCollectionToExcelFile("../../", "report", "someName", reports);
+            }
+
+            Console.WriteLine("The Excel table was successfully writen.");
+        }
+
         private static void ExportDataFromJsonReportsToMySql()
         {
             using (var dbContext = new FluentModelContent())
             {
-                //Report newReport = new Report
-                //{
-                //    Name = "First Report",
-                //    Type = "First type",
-                //    Vendor = "Stamat",
-                //    PricePerUnit = "13",
-                //    Sold = "14",
-                //    TotalIncome = "515"
-                //};
-
-                //dbContext.Add(newReport);
-
                 var reports = ExportSQLToJSON.ImportProductsInfo("../../../Reports/");
 
                 foreach (var item in reports)
@@ -88,6 +126,8 @@
 
                 dbContext.SaveChanges();
             }
+
+            Console.WriteLine("The reports was successfully loaded in MySql.");
         }
 
         private static void ImportProducesFromExcel()
@@ -121,28 +161,7 @@
 
             db.SaveChanges();
 
-            //ExcelExporter<Sale> l = new ExcelExporter<Sale>();
-            //l.ExportDataModelsCollectionToExcelFile(@".\", "Test2", "Test3", sales);
-
-            //ICollection<Sale> salesZip = k.ImportModelsDataFromZipFile(@".\test.zip");
-
-            //var i = 1;
-            //foreach (Sale sale in sales)
-            //{
-            //    db.Sales.Add(sale);
-
-            //    if (i % 100 == 0)
-            //    {
-            //        db.SaveChanges();
-            //        db.Dispose();
-            //        db = new ChemicalsDbContext();
-            //        i = 0;
-            //    }
-
-            //    i++;
-            //}
-
-            //db.SaveChanges();
+            Console.WriteLine("The data was successfully imported to SQL Server.");
         }
 
         private static void GeneratePdfReports()
@@ -151,20 +170,22 @@
 
             var dbContext = new ChemicalsDbContext();
 
-            var deals = dbContext.Produces
+            var deals = dbContext.Sales
                     .Select(d => new
                     {
-                        d.Id,
-                        d.Manufacturer.Name,
                         ProductName = d.Product.Name,
-                        d.Manufacturer.Address,
-                        d.Product.Formula
+                        Quantity = (d.Quantity + " " + d.Product.Measure.MeasureName).ToString(),
+                        PricePerUnit = (d.Product.PricePerUnit).ToString(),
+                        d.Product.Formula,
+                        d.Trader.Address,
+                        Total = (d.Quantity * d.Product.PricePerUnit).ToString()
                     }).ToList();
 
             pdfReportsGenerator.GenerateReport(deals);
+
+            Console.WriteLine("The report was successfully generated.");
         }
 
-        // TODO: add path to the method
         private static void GenerateJsonReports()
         {
             var dbContext = new ChemicalsDbContext();
@@ -172,6 +193,8 @@
             var listOfProducts = dbContext.Products.ToList();
 
             ExportSQLToJSON.ExportProducts(listOfProducts, "../../../Reports/");
+
+            Console.WriteLine("The reports was successfully generated.");
         }
 
         private static void GenerateXmlReports(string pathToSave)
@@ -218,6 +241,8 @@
                 var reportGenerator = new XmlReportGenerator();
                 reportGenerator.ExportXmlReport(report, pathToSave);
             }
+
+            Console.WriteLine("The report was successfully generated.");
         }
 
         private static void ImportTradersFromXml(string path)
@@ -235,6 +260,7 @@
 
             dbContext.SaveChanges();
             dbContext.Dispose();
+            ExportXmlTradersToMongo(traders);
         }
 
         private static void ImportManufacturersFromXml(string path)
@@ -252,6 +278,9 @@
 
             dbContext.SaveChanges();
             dbContext.Dispose();
+            ExportXmlManufacturersToMongo(manufacturers);
+
+            Console.WriteLine("The data was successfully imported to SQL Server and to MongoDB.");
         }
 
         private static void ImportDataFromMongo()
@@ -273,12 +302,12 @@
             }
 
             dbContext.SaveChanges();
+
+            Console.WriteLine("The data was successfully imported to the SQL Server.");
         }
 
-
-
         // TODO: ImportManufacturers in mongo
-        private static void ExportXmlManufacturersToMongo()
+        private static void ExportXmlManufacturersToMongo(ICollection<Manufacturer> manufacturers)
         {
             var mongoProvider = new MongoProvider(
                 System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
@@ -286,8 +315,20 @@
 
             var mongoDatabase = mongoProvider.GetDatabase();
 
-            var mongoImporter = new MongoImporter();
-            //mongoImporter.ImportManufacturers(mongoDatabase, manufacturers);
+            var mongoExporter = new MongoExporter();
+            mongoExporter.ExportManufacturers(mongoDatabase, manufacturers);
+        }
+
+        private static void ExportXmlTradersToMongo(ICollection<Trader> traders)
+        {
+            var mongoProvider = new MongoProvider(
+               System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].ConnectionString,
+               System.Configuration.ConfigurationManager.ConnectionStrings["MolybdenumDb"].Name);
+
+            var mongoDatabase = mongoProvider.GetDatabase();
+
+            var mongoExporter = new MongoExporter();
+            mongoExporter.ExportTraders(mongoDatabase, traders);
         }
     }
 }

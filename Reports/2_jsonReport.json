@@ -1,0 +1,9 @@
+{
+  "Id": 2,
+  "Name": "Hyposulfurous",
+  "Type": "Acid",
+  "Vendor": "PRINOVA",
+  "PricePerUnit": 1.1000,
+  "Sold": 1,
+  "TotalIncome": 1.1000
+}
