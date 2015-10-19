@@ -7,6 +7,12 @@
 
     public class ExportSQLToJSON
     {
+
+        public static void ImportProductsFromJson()
+        {
+
+        }
+
         public static void ExportProducts(List<Product> dbSet, string filePath)
         {
             var firstProduct = dbSet;
@@ -34,9 +40,9 @@
 
                     jsonReport = JsonConvert.SerializeObject(itemToJson, Formatting.Indented);
 
-                    System.Console.WriteLine(jsonReport);
+                    //System.Console.WriteLine(jsonReport);
 
-                    File.WriteAllText(filePath + item.Id.ToString() + "_jsonReport.txt", jsonReport);
+                    File.WriteAllText(filePath + item.Id.ToString() + "_jsonReport.json", jsonReport);
                 }
             }
         }

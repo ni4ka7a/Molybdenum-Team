@@ -36,10 +36,24 @@
 
         public ICollection<Manufacturer> GetAllManufacturers(IMongoDatabase database)
         {
-            var collection = database.GetCollection<Manufacturer>(TradersCollectionName);
+            var collection = database.GetCollection<Manufacturer>(ManufecturersCollectionName);
             var rest = collection.Find(t => true).ToListAsync().Result;
 
             return rest;
+        }
+
+        public void ImportManufacturers(IMongoDatabase database, ICollection<Manufacturer> manufacturers)
+        {
+            var collection = database.GetCollection<Manufacturer>(ManufecturersCollectionName);
+
+            collection.InsertManyAsync(manufacturers).Wait();
+        }
+
+        public void ImportTraders(IMongoDatabase database, ICollection<Trader> traders)
+        {
+            var collection = database.GetCollection<Trader>(ManufecturersCollectionName);
+
+            collection.InsertManyAsync(traders).Wait();
         }
     }
 }
