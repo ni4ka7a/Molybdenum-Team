@@ -18,12 +18,15 @@
     using XmlData;
     using Export.JSON;
     using DataImport;
+    using Chemicals.MySqlData;
+    using Telerik.OpenAccess;
+    using Chemicals.MySqlData.Models;
 
     public class Startup
     {
         public static void Main()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
 
 
             //ImportDataFromMongo();
@@ -38,10 +41,10 @@
 
             //GeneratePdfReports();
 
-            ImportSalesFromExcel();
+            //ImportSalesFromExcel();
 
+            
 
-         
             //IZipExtractor zipExtractor = new ZipExtractor();
             //ExcelImporter<Sale> k = new ExcelImporter<Sale>(zipExtractor);
             //ICollection<Sale> sales = k.ImportModelsDataFromDirectory(@".\tests");
@@ -69,6 +72,26 @@
 
             //db.SaveChanges();
 
+        }
+
+        private static void MySqlDataTest()
+        {
+            using (var dbContext = new FluentModelContent())
+            {
+
+                Report newReport = new Report
+                {
+                    Name = "First Report",
+                    Type = "First type",
+                    Vendor = "Stamat",
+                    PricePerUnit = "13",
+                    Sold = "14",
+                    TotalIncome = "515"
+                };
+
+                dbContext.Add(newReport);
+                dbContext.SaveChanges();
+            }
         }
 
         private static void ImportSalesFromExcel()

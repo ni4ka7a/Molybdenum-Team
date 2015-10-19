@@ -53,10 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FluentModel.cs" />
+    <Compile Include="FluentModelContext.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="OpenAccessNuGet.targets" />
     <None Include="packages.config" />
   </ItemGroup>
