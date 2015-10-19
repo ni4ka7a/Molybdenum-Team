@@ -38,23 +38,34 @@
             //ImportSalesFromExcel();
 
             //ImportProducesFromExcel();
+
+            //ExportDataFromJsonReportsToMySql();
         }
 
-        private static void MySqlDataTest()
+        // TODO: working! (for now)
+        private static void ExportDataFromJsonReportsToMySql()
         {
             using (var dbContext = new FluentModelContent())
             {
-                Report newReport = new Report
-                {
-                    Name = "First Report",
-                    Type = "First type",
-                    Vendor = "Stamat",
-                    PricePerUnit = "13",
-                    Sold = "14",
-                    TotalIncome = "515"
-                };
+                //Report newReport = new Report
+                //{
+                //    Name = "First Report",
+                //    Type = "First type",
+                //    Vendor = "Stamat",
+                //    PricePerUnit = "13",
+                //    Sold = "14",
+                //    TotalIncome = "515"
+                //};
 
-                dbContext.Add(newReport);
+                //dbContext.Add(newReport);
+
+                var reports = ExportSQLToJSON.ImportProductsInfo("../../../Reports/");
+
+                foreach (var item in reports)
+                {
+                    dbContext.Add(item);
+                }
+
                 dbContext.SaveChanges();
             }
         }
