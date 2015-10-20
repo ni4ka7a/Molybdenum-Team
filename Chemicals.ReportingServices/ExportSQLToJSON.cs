@@ -4,9 +4,8 @@
     using System.IO;
 
     using Models;
-    using Newtonsoft.Json;
-    
     using MySqlData.Models;
+    using Newtonsoft.Json;
 
     public class ExportSQLToJSON
     {

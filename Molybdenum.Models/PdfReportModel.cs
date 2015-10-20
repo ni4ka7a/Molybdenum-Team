@@ -8,7 +8,7 @@
 
         public string PricePerUnit { get; set; }
 
-        public string  Formula { get; set; }
+        public string Formula { get; set; }
 
         public string Address { get; set; }
 

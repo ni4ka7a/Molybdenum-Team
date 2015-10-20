@@ -2,10 +2,9 @@
 {
     using System.Linq;
 
+    using Models;
     using Telerik.OpenAccess;
     using Telerik.OpenAccess.Metadata;
-
-    using Models;
 
     public partial class FluentModelContent : OpenAccessContext
     {
@@ -17,7 +16,7 @@
 
         public FluentModelContent()
             : base("Server=localhost;Database=MolybdenumDb;Uid=root;Pwd=Fn:111211065;", backend, metadataSource)
-        { 
+        {
         }
 
         public IQueryable<Report> Reports
