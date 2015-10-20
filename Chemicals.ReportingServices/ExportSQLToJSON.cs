@@ -1,9 +1,10 @@
 ﻿namespace Chemicals.ReportingServices
 {
-    using Models;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.IO;
+
+    using Models;
+    using Newtonsoft.Json;
     
     using MySqlData.Models;
 
@@ -28,7 +29,6 @@
         public static void ExportProducts(List<Product> dbSet, string filePath)
         {
             var firstProduct = dbSet;
-            //var jsonStrBuilder = new StringBuilder();
 
             string jsonReport;
 
@@ -47,12 +47,7 @@
                         TotalIncome = sale.Quantity * item.PricePerUnit
                     };
 
-                    //jsonStrBuilder.Append(JsonConvert.SerializeObject(itemToJson, Formatting.Indented));
-                    //jsonReport = jsonStrBuilder.ToString();
-
                     jsonReport = JsonConvert.SerializeObject(itemToJson, Formatting.Indented);
-
-                    //System.Console.WriteLine(jsonReport);
 
                     File.WriteAllText(filePath + item.Id.ToString() + "_jsonReport.json", jsonReport);
                 }

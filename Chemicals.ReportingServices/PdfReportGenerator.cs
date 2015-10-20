@@ -9,6 +9,7 @@
 
     using iTextSharp.text;
     using iTextSharp.text.pdf;
+    using Models;
 
     public class PdfReportGenerator
     {
@@ -22,7 +23,7 @@
         /// Save a pdf file in  "../../test.pdf".
         /// </summary>
         /// <param name="deals">Expect Collection of objects that have Name, Address, ProductName and formula.</param>
-        public void GenerateReport(IEnumerable<dynamic> deals)
+        public void GenerateReport(IEnumerable<PdfReportModel> deals)
         {
             FileStream fileStream = new FileStream(ReportsPath, FileMode.Create, FileAccess.Write, FileShare.None);
             Rectangle pageSize = new Rectangle(PageSize.A4);
@@ -36,19 +37,19 @@
             reportTable.HorizontalAlignment = Element.ALIGN_LEFT;
             PdfPCell headerCell = new PdfPCell(new Phrase("Produced products information", boldFont));
             headerCell.Colspan = 6;
-            headerCell.HorizontalAlignment = 0; //0=Left, 1=Centre, 2=Right
+            headerCell.HorizontalAlignment = 0;
             reportTable.AddCell(headerCell);
 
-            PutHeadCells(reportTable);
+            this.PutHeadCells(reportTable);
 
-            foreach (var item in deals)
+            foreach (var deal in deals)
             {
-                reportTable.AddCell(item.GetType().GetProperty("ProductName").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("Quantity").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("PricePerUnit").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("Formula").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("Address").GetValue(item, null));
-                reportTable.AddCell(item.GetType().GetProperty("Total").GetValue(item, null));
+                reportTable.AddCell(deal.ProductName);
+                reportTable.AddCell(deal.Quantity);
+                reportTable.AddCell(deal.PricePerUnit);
+                reportTable.AddCell(deal.Formula);
+                reportTable.AddCell(deal.Address);
+                reportTable.AddCell(deal.Total);
             }
 
             reportDocument.Add(reportTable);

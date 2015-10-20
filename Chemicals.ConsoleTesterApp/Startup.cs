@@ -13,11 +13,11 @@
     using MongoData.MongoDb;
     using MySqlData;
     using MySqlData.Models;
+    using ReportingServices;
+    using SQLightData;
     using Telerik.OpenAccess;
     using XmlData;
     using XmlReport;
-    using ReportingServices;
-    using SQLightData;
 
     public class Startup
     {
@@ -27,7 +27,7 @@
 
         public static void Main()
         {
-            // System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
+            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<ChemicalsDbContext, Data.SQLServer.Migrations.Configuration>());
 
             while (true)
             {
@@ -93,9 +93,7 @@
 
                 foreach (var product in products)
                 {
-                    Console.WriteLine(
-                        "{0}, {1}, {2}, {3}",
-                        product.Id, product.Name, product.Formula, product.PricePerUnit);
+                    Console.WriteLine("{0}, {1}, {2}, {3}", product.Id, product.Name, product.Formula, product.PricePerUnit);
                 }
             }
         }
@@ -171,13 +169,13 @@
             var dbContext = new ChemicalsDbContext();
 
             var deals = dbContext.Sales
-                    .Select(d => new
+                    .Select(d => new PdfReportModel
                     {
                         ProductName = d.Product.Name,
                         Quantity = (d.Quantity + " " + d.Product.Measure.MeasureName).ToString(),
-                        PricePerUnit = (d.Product.PricePerUnit).ToString(),
-                        d.Product.Formula,
-                        d.Trader.Address,
+                        PricePerUnit = d.Product.PricePerUnit.ToString(),
+                        Formula = d.Product.Formula,
+                        Address = d.Trader.Address,
                         Total = (d.Quantity * d.Product.PricePerUnit).ToString()
                     }).ToList();
 

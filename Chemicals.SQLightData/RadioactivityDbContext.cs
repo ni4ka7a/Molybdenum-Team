@@ -4,7 +4,6 @@
 
     public class RadioactivityDbContext : DbContext
     {
-
         public RadioactivityDbContext()
             : base("RadioactivityDb")
         {

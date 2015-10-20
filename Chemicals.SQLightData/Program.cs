@@ -1,8 +1,8 @@
 ﻿namespace Chemicals.SQLightData
 {
     using System;
-    using  System.Collections.Generic;
-    using  Chemicals.Models;
+    using System.Collections.Generic;
+    using Chemicals.Models;
 
     public class Program
     {
@@ -28,8 +28,6 @@
         {
             using (var db = new RadioactivityDbContext())
             {
-
-
                 foreach (var prod in products)
                 {
                     var radProduct = new RadioactiveProduct();

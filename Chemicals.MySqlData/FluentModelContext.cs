@@ -1,6 +1,7 @@
 ﻿namespace Chemicals.MySqlData
 {
     using System.Linq;
+
     using Telerik.OpenAccess;
     using Telerik.OpenAccess.Metadata;
 
@@ -16,7 +17,8 @@
 
         public FluentModelContent()
             : base("Server=localhost;Database=MolybdenumDb;Uid=root;Pwd=Fn:111211065;", backend, metadataSource)
-        { }
+        { 
+        }
 
         public IQueryable<Report> Reports
         {
