@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExportSQLToJSON.cs" />
+    <Compile Include="JSONReportGenerator.cs" />
     <Compile Include="PdfReportGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlReportGenerator.cs" />

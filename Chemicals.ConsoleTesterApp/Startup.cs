@@ -115,7 +115,7 @@
         {
             using (var dbContext = new FluentModelContent())
             {
-                var reports = ExportSQLToJSON.ImportProductsInfo("../../../Reports/");
+                var reports = JSONReportGenerator.ImportProductsInfo("../../../Reports/");
 
                 foreach (var item in reports)
                 {
@@ -190,7 +190,7 @@
 
             var listOfProducts = dbContext.Products.ToList();
 
-            ExportSQLToJSON.ExportProducts(listOfProducts, "../../../Reports/");
+            JSONReportGenerator.ExportProducts(listOfProducts, "../../../Reports/");
 
             Console.WriteLine("The reports was successfully generated.");
         }

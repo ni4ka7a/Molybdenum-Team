@@ -1,18 +1,33 @@
-﻿namespace Chemicals.Export.JSON
+﻿namespace Chemicals.ReportingServices
 {
     using System.Collections.Generic;
     using System.IO;
 
     using Models;
+    using MySqlData.Models;
     using Newtonsoft.Json;
 
-    public class ExportSQLToJSON
+    public class JSONReportGenerator
     {
+        public static List<Report> ImportProductsInfo(string directoryPath)
+        {
+            var files = Directory.GetFiles(directoryPath);
+
+            string jsonReport;
+            var copy = new List<Report>();
+
+            for (int i = 0; i < files.Length; i++)
+            {
+                jsonReport = File.ReadAllText(files[i]);
+                copy.Add(JsonConvert.DeserializeObject<Report>(jsonReport));
+            }
+
+            return copy;
+        }
+
         public static void ExportProducts(List<Product> dbSet, string filePath)
         {
             var firstProduct = dbSet;
-
-           ////var jsonStrBuilder = new StringBuilder();
 
             string jsonReport;
 
@@ -31,14 +46,9 @@
                         TotalIncome = sale.Quantity * item.PricePerUnit
                     };
 
-                    //jsonStrBuilder.Append(JsonConvert.SerializeObject(itemToJson, Formatting.Indented));
-                    //jsonReport = jsonStrBuilder.ToString();
-
                     jsonReport = JsonConvert.SerializeObject(itemToJson, Formatting.Indented);
 
-                    System.Console.WriteLine(jsonReport);
-
-                    File.WriteAllText(filePath + item.Id.ToString() + "_jsonReport.txt", jsonReport);
+                    File.WriteAllText(filePath + item.Id.ToString() + "_jsonReport.json", jsonReport);
                 }
             }
         }
